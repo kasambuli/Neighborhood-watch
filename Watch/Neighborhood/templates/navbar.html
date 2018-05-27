@@ -1,0 +1,62 @@
+<nav class="navbar navbar-default navbar-fixed-top" style=" background-color: black;">
+    <div class="container-fluid">
+
+        <div class="navbar-header">
+
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <a href="/" class="navbar-brand">
+                <img src="#" style="height:20px;">
+                <span style="font-family: 'Anton', sans-serif; display: block">Neighborhood Watch</span>
+            </a>
+        </div>
+
+
+
+        {% if user.is_authenticated %}
+        <ul class="nav navbar-nav navbar-right">
+            <li class="nav-item">
+                <a class="nav-link active" href="#">
+                    <img src="#" class="img-fluid small" style="height: 40px;">
+                </a>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="false">
+
+                    <ion-icon style="font-size:200%;" name="contact"></ion-icon>
+
+
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="/images">Upload Photo</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'profile' user.id %}">{{user.username}}</a>
+                    </li>
+                    <li>
+                        <a href="/accounts/password/change">Change Password</a>
+                    </li>
+                    <li role="separator" class="divider"></li>
+                    <li>
+                        <a href="/logout">Logout</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        {%else%}
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a href="/accounts/login">Login</a>
+            </li>
+        </ul>
+        {% endif %}
+    </div>
+
+
+</nav>

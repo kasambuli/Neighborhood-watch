@@ -1,0 +1,27 @@
+{%extends 'base.html'%} {% block content %} {% load bootstrap3 %}{% load static%}{{ block.super}} {% block styles %} {% bootstrap_css %}
+
+<link rel="stylesheet" href="{% static 'css/index.css' %}"> {% endblock %}
+
+
+<div class="container">
+
+    <!-- Looping through projects   -->
+
+    <div class="row">
+        {% if neighborhood %}{% for hood in neighborhood %}
+
+
+
+        <div class="card" style="width: 50%; align-content: center">
+            <h2 class="text-center"> {{ hood.name }} </h2>
+            <p class="text-center"> {{ hood.location }} </p>
+            <p class="text-center"> {{ hood.occupant_count }} </p>
+        </div>
+    </div>
+</div>
+</div>
+
+</div>
+{% endfor %} {% endif %}
+</div>
+{% endblock %}

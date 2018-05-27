@@ -1,0 +1,25 @@
+{% load bootstrap3 %}{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="../static/images/logo.png" type="image/x-icon">
+    <title>Instaclone</title>
+    {% block styles %} {% bootstrap_css %} {% endblock %}
+    <link href="https://fonts.googleapis.com/css?family=Anton|Bitter|Indie+Flower" rel="stylesheet">
+
+    <script src="https://unpkg.com/ionicons@4.0.0/dist/ionicons.js"></script>
+
+</head>
+
+<body>
+    {% block content %} {% include "navbar.html" %} {% endblock %} {% block scripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> {% bootstrap_javascript %} {% endblock %}
+
+</body>
+
+
+</html>

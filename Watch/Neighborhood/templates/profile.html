@@ -1,0 +1,50 @@
+ {%extends 'base.html'%} {% block content %} {% load bootstrap3 %}{% load static%}{{ block.super}} {% block styles %} {% bootstrap_css %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}"> {% endblock %}
+
+<div class="container" style="padding: 80px 16px;">
+
+    <div class="row">
+        <span class="col-md-6">
+            <img style="width:40%; border-radius:99%;" src=" {{profile.avatar.url}}" class="img-responsive" alt="avatar">
+        </span>
+
+
+
+
+        <div class="col-sm-6">
+
+            <div class="col-xs-4">
+                <nav aria-label="... ">
+                    <ul class="pager ">
+                        <li class="previous ">
+                            <a href="{% url 'editProfile' %}">
+                                <p class="text-center " style="width:280px; ">
+                                    <strong>Profile</strong>
+                                </p>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+
+
+        </div>
+
+
+        <hr>
+
+
+    </div>
+
+
+    <div class="row ">
+        <h1 class="text-center ">{{profile.name}}</h1>
+    </div>
+
+    <div class="row ">
+
+        <h1 class="text-center ">{{profile.location}}</h1>
+        container
+    </div>
+</div>{% endblock %}
