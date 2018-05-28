@@ -1,0 +1,15 @@
+{%extends 'base.html'%} {% block content %}{% load bootstrap4 %} {{form.media}} {% load static %} {% block styles %} {% bootstrap_css %}
+<link rel="stylesheet" href="{% static 'css/post.css'%}"> {% endblock %}
+<div class="container">
+    <h1>
+        <strong>Create a Post</strong>
+    </h1>
+    {{form.media}}
+
+    <form action="{%url 'post' %}" method="post" enctype="multipart/form-data">
+        {%csrf_token%} {% bootstrap_form form%}
+        <input type="submit" class="btn btn-success btn-lg" value="Post">
+    </form>
+
+
+</div> {%endblock%}
