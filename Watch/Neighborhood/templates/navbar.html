@@ -1,62 +1,97 @@
-<nav class="navbar navbar-default navbar-fixed-top" style=" background-color: black;">
-    <div class="container-fluid">
+<nav class="navbar navbar-expand-xl navbar-dark  navbar-togglable  fixed-top">
+    <div class="container">
 
-        <div class="navbar-header">
+        <!-- Brand -->
+        <a class="navbar-brand" href="index.html">
+            <svg class="navbar-brand-svg" viewBox="0 0 245 80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <path d="M0 0 L 20 10 L 0 20 Z" class="text-primary" fill="currentColor"></path>
+                <path d="M0 30 L 20 40 L 0 50 Z M20 45 L 0 55 L 20 65 Z M0 60 L 20 70 L 0 80 Z" fill="currentColor"></path>
+                <text x="40" y="70" font-family="Arial, sans-serif" font-size="60" font-weight="bold" letter-spacing="-.025em" fill="currentColor">Neighborhood Watch</text>
+            </svg>
+        </a>
 
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
+        <!-- Toggler -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-            <a href="/" class="navbar-brand">
-                <img src="#" style="height:20px;">
-                <span style="font-family: 'Anton', sans-serif; display: block">Neighborhood Watch</span>
-            </a>
+        <!-- Collapse -->
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+
+            <!-- Social -->
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item-divider">
+                    <span class="nav-link">
+                        <span></span>
+                    </span>
+                </li>
+            </ul>
+
+            <!-- Links -->
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarBusinesses" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Businesses
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarBusinesses">
+                        <a class="dropdown-item " href="#">
+                            Personal Creations and art
+                        </a>
+                        <a class="dropdown-item " href="#">
+                            Outfits and Accessories
+                        </a>
+                        <a class="dropdown-item " href="#">
+                            Groceries and Food
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarServices" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Services
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarServices">
+                        <a class="dropdown-item " href="#">
+                            Health
+                        </a>
+                        <a class="dropdown-item " href="#">
+                            Police
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-item ">
+                    <a href="#" class="nav-link">
+                        Neighborhood Posts
+                    </a>
+                </li>
+                <li class="nav-item-divider">
+                    <span class="nav-link">
+                        <span></span>
+                    </span>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarProfile" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Profile
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarProfile">
+                        <a class="dropdown-item  active " href="#">
+                            Create Post
+                        </a>
+                        <a class="dropdown-item " href="{% url 'profile' user.id %}">
+                            {{user.username}}
+                        </a>
+                        <a class="dropdown-item " href="/accounts/password/change">
+                            Change Password
+                        </a>
+                        <a class="dropdown-item " href="/logout">
+                            Logout
+                        </a>
+                    </div>
+                </li>
+            </ul>
+
         </div>
+        <!-- / .navbar-collapse -->
 
-
-
-        {% if user.is_authenticated %}
-        <ul class="nav navbar-nav navbar-right">
-            <li class="nav-item">
-                <a class="nav-link active" href="#">
-                    <img src="#" class="img-fluid small" style="height: 40px;">
-                </a>
-            </li>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="false">
-
-                    <ion-icon style="font-size:200%;" name="contact"></ion-icon>
-
-
-                </a>
-                <ul class="dropdown-menu">
-                    <li>
-                        <a href="/images">Upload Photo</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'profile' user.id %}">{{user.username}}</a>
-                    </li>
-                    <li>
-                        <a href="/accounts/password/change">Change Password</a>
-                    </li>
-                    <li role="separator" class="divider"></li>
-                    <li>
-                        <a href="/logout">Logout</a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-        {%else%}
-        <ul class="nav navbar-nav navbar-right">
-            <li>
-                <a href="/accounts/login">Login</a>
-            </li>
-        </ul>
-        {% endif %}
     </div>
-
-
+    <!-- / .container -->
 </nav>
