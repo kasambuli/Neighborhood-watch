@@ -60,15 +60,15 @@ class Post(models.Model):
    post = models.TextField(max_length=100,null = True)
    profile = models.ForeignKey(UserProfile,on_delete=models.CASCADE,null = True)
    user = models.ForeignKey(User,on_delete=models.CASCADE,null = True)
-   time = models.DateTimeField(auto_now_add=True,blank = True,null = True)
+   time = models.DateTimeField(auto_now_add=True,blank = True)
 
 class Services(models.Model):
    '''
    model that saves the services data
    '''
-   police_station = models.CharField(max_length = 30)
-   police_no = models.IntegerField(10)
-   police_location = models.CharField(max_length = 30)
-   healthcare_centre = models.CharField(max_length = 30)
-   healthcare_no = models.IntegerField(10)
+   police_station = models.CharField(max_length = 30,blank = True)
+   police_no = models.IntegerField(10,blank = True)
+   police_location = models.CharField(max_length = 30,blank = True)
+   healthcare_centre = models.CharField(max_length = 30,blank = True)
+   healthcare_no = models.IntegerField(10,blank = True)
    healthcare_location = models.CharField(max_length = 30 ,blank = True)
