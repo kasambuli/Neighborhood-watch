@@ -1,0 +1,30 @@
+{%extends 'base.html'%} {% block content %} {% load bootstrap4 %}{% load static%}{{ block.super}} {% block styles %} {% bootstrap_css %}
+<link rel="stylesheet" href="{% static 'css/viewpost.css' %}"> {% endblock %}
+<div class="container">
+    <div class="row justify-content-center align-items-center">
+        {% if posts %}{% for post in posts %}
+        <div class="col-md-8 col-lg-7">
+
+            <!-- Preheading -->
+            <p>
+                <img style="width:50px; height:50px ; border-radius:50%;" src=" {{post.profile.avatar.url}}" class="img-responsive" alt=" image">{{post.profile.name}}
+            </p>
+            <h1 class="text-white text-muted text-uppercase text-center text-sm" data-animation="fadeUp" data-animation-order="0" data-animation-trigger="entered">
+                {{ post.title }}
+            </h1>
+
+            <!-- Heading -->
+            <h3 class="text-center mb-4" data-animation="fadeUp" data-animation-order="1" data-animation-trigger="entered">
+                {{ post.post }}
+            </h3>
+
+            <!-- Subheading -->
+            <p class="lead text-white text-muted text-center mb-5" data-animation="fadeUp" data-animation-order="2" data-animation-trigger="entered">
+                {{post.time}}
+            </p>
+        </div>
+        {% endfor %} {% endif %}
+    </div>
+    <!-- / .row -->
+</div>{% endblock %}
+<!-- / .container -->
