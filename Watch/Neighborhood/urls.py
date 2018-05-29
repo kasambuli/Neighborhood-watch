@@ -14,6 +14,8 @@ url(r'^business/',views.business,name = 'business'),
 url(r'^viewbusiness/',views.viewBusiness,name = 'viewbusiness'),
 url(r'^services/',views.services,name = 'services'),
 url(r'^viewservices/',views.viewServices,name = 'viewservices'),
+url(r'^search/',views.search_business, name = 'searchbusiness'),
+url(r'^landing/',views.landing,name = 'landing')
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

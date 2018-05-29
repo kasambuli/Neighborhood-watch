@@ -22,7 +22,7 @@ def update_profile(request):
             if UserProfile.objects.filter(user_id=current_user.id).exists():
                 UserProfile.objects.filter(user_id=current_user.id).delete()
             profile.save()
-            return redirect('/accounts/profile/')
+            return redirect('/')
 
     else:
         form = UserProfileForm()
@@ -59,7 +59,7 @@ def neighborhood(request):
                 neighborhood = form.save(commit = False)
                 neighborhood.user = current_user
                 neighborhood.save()
-            return redirect('/viewpost')
+            return redirect('/profile')
         else:
             form = NeighborhoodForm()
 
@@ -70,6 +70,9 @@ def neighborhood(request):
 def index(request):
     neighborhood = Neighborhood.objects.all()
     return render(request,'index.html',{"neighborhood":neighborhood})
+
+def landing(request):
+    return render(request,'landing.html')
 
 def post(request):
     '''
@@ -83,7 +86,7 @@ def post(request):
                 post = form.save(commit = False)
                 post.user = current_user
                 post.save()
-            return redirect('/')
+            return redirect('/viewpost')
         else:
             form = PostForm()
 
@@ -151,3 +154,19 @@ def viewServices(request):
     '''
     services = Services.objects.all()
     return render(request,'viewservices.html',{"services":services})
+
+def search_business(request):
+    '''
+    function to search by business name
+    '''
+    if 'name' in request.GET and request.GET["name"]:
+        searched_business = request.GET.get("name")
+        business = Business.search_business(searched_business)
+        message = f"{searched_business}"
+
+        return render(request, 'search.html', {"message": message, "business":business})
+
+    else:
+        message = "Sorry, No one by this username"
+        return render(request, 'search.html', {"message": message})
+

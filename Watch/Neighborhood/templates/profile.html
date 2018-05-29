@@ -17,10 +17,8 @@
                 <nav aria-label="... ">
                     <ul class="pager ">
                         <li class="previous ">
-                            <a href="{% url 'editProfile' %}">
-                                <p class="text-center " style="width:280px; ">
-                                    <strong>Profile</strong>
-                                </p>
+                            <a href="{% url 'editProfile'%}">
+                                <button type="submit" class="btn btn-lg btn-primary btn-block text-black text-uppercase text-center text-sm" value="Login" style="background-color:rgb(0, 0, 255)">Edit Profile</button>
                             </a>
                         </li>
                     </ul>
@@ -44,7 +42,6 @@
 
     <div class="row ">
 
-        <h1 class="text-center ">{{profile.location}}</h1>
-        container
+        <h1 class="text-center ">location:{{profile.location}}</h1>
     </div>
 </div>{% endblock %}

@@ -1,66 +1,35 @@
-<nav class="navbar navbar-expand-xl navbar-dark  navbar-togglable  fixed-top">
+<nav class="navbar navbar-expand-xl navbar-dark  navbar-togglable  fixed-top" style="color:black;">
     <div class="container">
 
         <!-- Brand -->
-        <a class="navbar-brand" href="index.html">
-            <svg class="navbar-brand-svg" viewBox="0 0 245 80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                <path d="M0 0 L 20 10 L 0 20 Z" class="text-primary" fill="currentColor"></path>
-                <path d="M0 30 L 20 40 L 0 50 Z M20 45 L 0 55 L 20 65 Z M0 60 L 20 70 L 0 80 Z" fill="currentColor"></path>
-                <text x="40" y="70" font-family="Arial, sans-serif" font-size="60" font-weight="bold" letter-spacing="-.025em" fill="currentColor">Neighborhood Watch</text>
-            </svg>
+
+        <a class="navbar-brand" href="{% url 'index' %}" class="nav-link" style="color: black">
+                Neighborhood Watch
         </a>
-
-        <!-- Toggler -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
         <!-- Collapse -->
         <div class="collapse navbar-collapse" id="navbarCollapse">
 
-            <!-- Social -->
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item-divider">
-                    <span class="nav-link">
-                        <span></span>
-                    </span>
-                </li>
-            </ul>
+            <form class="navbar-form navbar-left" role="search" action="{% url 'searchbusiness' %}">
+                <div class="form-group navbar-right">
+                    <input style="background:white;" type="text" class="form-control" placeholder="Search Business" name="name">
+                </div>
 
+            </form>
             <!-- Links -->
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarBusinesses" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Businesses
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarBusinesses">
-                        <a class="dropdown-item " href="#">
-                            Personal Creations and art
-                        </a>
-                        <a class="dropdown-item " href="#">
-                            Outfits and Accessories
-                        </a>
-                        <a class="dropdown-item " href="#">
-                            Groceries and Food
-                        </a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarServices" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Services
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarServices">
-                        <a class="dropdown-item " href="#">
-                            Health
-                        </a>
-                        <a class="dropdown-item " href="#">
-                            Police
-                        </a>
-                    </div>
+                <li class="nav-item ">
+                    <a href="{% url 'viewbusiness' %}" class="nav-link" style="color: black">
+                    Businesses
+                </a>
                 </li>
                 <li class="nav-item ">
-                    <a href="#" class="nav-link">
-                        Neighborhood Posts
+                    <a href="{% url 'viewpost' %}" class="nav-link" style="color: black">
+                    Neighborhood Posts
+                </a>
+                </li>
+                <li class="nav-item ">
+                    <a href="{% url 'viewservices' %}" class="nav-link" style="color: black">
+                        Services
                     </a>
                 </li>
                 <li class="nav-item-divider">
@@ -69,11 +38,11 @@
                     </span>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarProfile" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarProfile" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black">
                         Profile
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarProfile">
-                        <a class="dropdown-item  active " href="#">
+                        <a class="dropdown-item  active " href="{% url 'post' %}">
                             Create Post
                         </a>
                         <a class="dropdown-item " href="{% url 'profile' user.id %}">
@@ -94,4 +63,5 @@
 
     </div>
     <!-- / .container -->
+
 </nav>

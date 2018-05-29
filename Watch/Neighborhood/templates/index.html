@@ -4,49 +4,50 @@
 <section class="section section-top section-full">
 
     <!-- Cover -->
-    <div class="bg-cover" style="background-image: url('../../static/images/neighborhood2.jpeg');"></div>
+    <div class="bg-cover" style="padding-bottom: 10%;margin-bottom: 0px;opacity: 0.8;color: #000;background: #000 url(' ../static/images/neighborhood2.jpeg ') center center;width: 100%;height: 100%;background-size: cover;">
+        <!-- Overlay -->
+        <div class="bg-overlay"></div>
 
-    <!-- Overlay -->
-    <div class="bg-overlay"></div>
+        <!-- Triangles -->
+        <div class="bg-triangle bg-triangle-light bg-triangle-bottom bg-triangle-left"></div>
+        <div class="bg-triangle bg-triangle-light bg-triangle-bottom bg-triangle-right"></div>
 
-    <!-- Triangles -->
-    <div class="bg-triangle bg-triangle-light bg-triangle-bottom bg-triangle-left"></div>
-    <div class="bg-triangle bg-triangle-light bg-triangle-bottom bg-triangle-right"></div>
+        <!-- Content -->
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                {% if neighborhood %}{% for hood in neighborhood %}
+                <div class="col-md-8 col-lg-7" style="padding-top: 15%;">
 
-    <!-- Content -->
-    <div class="container">
-        <div class="row justify-content-center align-items-center">
-            {% if neighborhood %}{% for hood in neighborhood %}
-            <div class="col-md-8 col-lg-7">
+                    <!-- Preheading -->
+                    <h1 class="text-black text-muted text-uppercase text-center text-sm" data-animation="fadeUp" data-animation-order="0" data-animation-trigger="entered">
+                        {{ hood.name }}
+                    </h1>
 
-                <!-- Preheading -->
-                <h1 class="text-white text-muted text-uppercase text-center text-sm" data-animation="fadeUp" data-animation-order="0" data-animation-trigger="entered">
-                    {{ hood.name }}
-                </h1>
+                    <!-- Heading -->
+                    <h3 class="text-center mb-4" data-animation="fadeUp" data-animation-order="1" data-animation-trigger="entered">
+                        {{ hood.location }}
+                    </h3>
 
-                <!-- Heading -->
-                <h3 class="text-center mb-4" data-animation="fadeUp" data-animation-order="1" data-animation-trigger="entered">
-                    {{ hood.location }}
-                </h3>
+                    <!-- Subheading -->
+                    <p class="lead text-white text-muted text-center mb-5" data-animation="fadeUp" data-animation-order="2" data-animation-trigger="entered">
+                        Occupant Count: {{hood.occupant_count}}
+                    </p>
 
-                <!-- Subheading -->
-                <p class="lead text-white text-muted text-center mb-5" data-animation="fadeUp" data-animation-order="2" data-animation-trigger="entered">
-                    Occupant Count: {{hood.occupant_count}}
-                </p>
+                    <!-- Button -->
+                    <p class="text-center mb-0" data-animation="fadeUp" data-animation-order="3" data-animation-trigger="entered">
+                        <a href="{% url 'viewpost' %}" target="_blank" class="btn btn-outline-primary">
+                    Check Out Posts
+                </a>
+                    </p>
 
-                <!-- Button -->
-                <p class="text-center mb-0" data-animation="fadeUp" data-animation-order="3" data-animation-trigger="entered">
-                    <a href="" target="_blank" class="btn btn-outline-primary">
-                        Check Out Posts
-                    </a>
-                </p>
-
+                </div>
+                {% endfor %} {% endif %}
             </div>
-            {% endfor %} {% endif %}
+            <!-- / .row -->
         </div>
-        <!-- / .row -->
+        <!-- / .container -->
+
     </div>
-    <!-- / .container -->
 
 
 </section>
@@ -59,26 +60,28 @@
     <!-- Content -->
     <div class="container">
         <div class="row justify-content-center">
+            {% if neighborhood %}{% for hood in neighborhood %}
             <div class="col-md-8 col-lg-6">
 
                 <!-- Heading -->
                 <h2 class="text-center mb-4">
-                    About MIAMBANI
+                    About {{ hood.name }}
                 </h2>
 
                 <!-- Subheading -->
                 <p class="text-muted text-center mb-5">
-                    MIAMBANI is an amazing neighborhood at the heart of Nairobi. It has a population of nearly 300 people who live in harmony.
+                    {{ hood.name }} is an amazing neighborhood at the heart of {{ hood.location }}. It has a population of {{hood.occupant_count}} people who live in harmony.
                 </p>
 
             </div>
+            {% endfor %} {% endif %}
         </div>
         <!-- / .row -->
         <div class="row">
             <div class="col-md-4">
 
                 <!-- Item -->
-                <a href="#" class="card border-0 mb-3 mb-md-0">
+                <a href="{% url 'viewbusiness' %}" class="card border-0 mb-3 mb-md-0">
 
                     <!-- Image -->
                     <div class="card-img-top">
@@ -107,7 +110,7 @@
             <div class="col-md-4">
 
                 <!-- Item -->
-                <a href="#" class="card border-0 mb-3">
+                <a href="{% url 'viewservices' %}" class="card border-0 mb-3">
 
                     <!-- Image -->
                     <div class="card-img-top">
@@ -136,7 +139,7 @@
             <div class="col-md-4 ">
 
                 <!-- Item -->
-                <a href="# " class="card border-0 mb-3 mb-md-0 ">
+                <a href="{% url 'post' %}" class="card border-0 mb-3 mb-md-0 ">
 
                     <!-- Image -->
                     <div class="card-img-top ">
@@ -211,21 +214,17 @@
     <!--Content -->
     <div class="container ">
         <div class="row align-self-center ">
-            <div class="col-md-auto ">
+            <div class="col-md-6 ">
 
                 <!-- Brand -->
                 <p>
-                    <a href="# " class="footer-brand text-white ">
-                        <svg class="footer-brand-svg " viewBox="0 0 235 80 " xmlns="http://www.w3.org/2000/svg " xmlns:xlink="http://www.w3.org/1999/xlink ">
-                            <path d="M0 0 L 20 10 L 0 20 Z " class="text-primary " fill="currentColor "></path>
-                            <path d="M0 30 L 20 40 L 0 50 Z M20 45 L 0 55 L 20 65 Z M0 60 L 20 70 L 0 80 Z " fill="currentColor "></path>
-                            <text x="40 " y="70 " font-family="Arial, sans-serif " font-size="60 " font-weight="bold " letter-spacing="-.025em " fill="currentColor ">incline.</text>
-                        </svg>
+                    <a class="navbar-brand" href="{% url 'index' %}" class="nav-link" style="color: white">
+                         Neighborhood Watch
                     </a>
                 </p>
 
             </div>
-            <div class="col-md ">
+            <div class="col-md-6 ">
 
                 <!-- Links -->
                 <ul class="footer-links justify-content-end ">
@@ -245,13 +244,13 @@
         </div>
         <!-- / .row -->
         <div class="row align-items-center ">
-            <div class="col-md ">
+            <div class="col-md-8 ">
 
                 <!-- Copyright -->
                 <p class="text-white text-muted ">
                     <small>
                         &copy; Copyright
-                        <span class="current-year "></span> Simpleqode. All rights reserved.
+                        <span class="current-year "></span> Neighborhood Watch. All rights reserved.
                     </small>
                 </p>
 

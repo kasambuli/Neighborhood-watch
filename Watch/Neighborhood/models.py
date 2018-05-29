@@ -14,30 +14,42 @@ class Neighborhood(models.Model):
     occupant_count = models.IntegerField()
     def __str__(self):
         return self.name
+    def save_neighborhood(self):
+        self.save()
 
+    @classmethod
+    def delete_neighborhood(cls,id):
+        cls.objects.filter(id).delete()
+    @classmethod
+    def update_neighborhood(cls,id,new_name):
+        cls.objects.filter(id=id).update(name = new_name)
+
+    @classmethod
+    def update_occupant_count(cls,id,new_occupant):
+        cls.objects.filter(id=id).update(occupant_count =new_occupant)
+        
 class UserProfile(models.Model):
     '''
     class that saves the user data 
     '''
-    user = models.ForeignKey(User, on_delete = models.CASCADE)
+    user = models.OneToOneField(User, on_delete = models.CASCADE, null=True )
     name = models.CharField(max_length = 100,null = True)
-    neighborhood = models.ForeignKey(Neighborhood, on_delete = models.CASCADE,blank = True)
+    identification = models.IntegerField(null = True) 
+    neighborhood = models.ForeignKey(Neighborhood, on_delete = models.CASCADE, null=True)
     location = models.CharField(max_length = 100,null = True)
     avatar = models.ImageField(upload_to = 'avatar/',null = True)  
     def __str__(self):
        return self.name
-
-    @receiver(post_save, sender=User)
-    def update_profile(sender, instance, created, **kwargs):
-        if created:
-            UserProfile.objects.create(user=instance)
-        instance.profile.save()
-
+    
     def save_profile(self):
         self.save()
 
-    def delete_profile(self):
-        self.delete()
+    @classmethod
+    def delete_profile(cls,id):
+        cls.objects.filter(id).delete()
+    @classmethod
+    def update_profile(cls,id,new_name):
+        cls.objects.filter(id=id).update(name = new_name)
 
     @classmethod
     def get_profile(cls):
@@ -49,8 +61,26 @@ class Business(models.Model):
     '''
     name = models.CharField(max_length = 100)
     user = models.ForeignKey(User, on_delete = models.CASCADE)
-    neighborhood = models.ForeignKey(Neighborhood, on_delete = models.CASCADE)
+    neighborhood = models.ForeignKey(Neighborhood, on_delete = models.CASCADE, null=True)
     email= models.CharField(max_length = 100)
+    def __str__(self):
+       return self.name
+    
+    def save_business(self):
+        self.save()
+
+    @classmethod
+    def delete_business(cls,id):
+        cls.objects.filter(id).delete()
+    @classmethod
+    def update_business(cls,id,new_name):
+        cls.objects.filter(id=id).update(name = new_name)
+
+    @classmethod
+    def search_business(cls, searched_business):
+        business = cls.objects.filter(name__icontains=searched_business)
+
+        return business
 
 class Post(models.Model):
    '''
@@ -58,9 +88,9 @@ class Post(models.Model):
    '''
    title = models.CharField(max_length  = 100,null = True)
    post = models.TextField(max_length=100,null = True)
-   profile = models.ForeignKey(UserProfile,on_delete=models.CASCADE,null = True)
-   user = models.ForeignKey(User,on_delete=models.CASCADE,null = True)
-   time = models.DateTimeField(auto_now_add=True,blank = True)
+   profile = models.ForeignKey(UserProfile,on_delete=models.CASCADE)
+   user = models.ForeignKey(User,on_delete=models.CASCADE)
+   time = models.DateTimeField(auto_now_add=True,null = True)
 
 class Services(models.Model):
    '''

@@ -1,0 +1,46 @@
+{%extends 'base.html'%} {% block content %} {% load bootstrap4 %}{% load static%}{{ block.super}} {% block styles %} {% bootstrap_css %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}"> {% endblock %}
+<div class="container">
+
+    <div class="row" style="padding-top:15%; align-content: center">
+        {% if business %}
+        <h2>Found {{ business|length }} of searched term {{message}}.</h2>
+        {% else %}
+        <h2> Found 0 users of the name {{message}}</h2>
+        {% endif %}
+
+    </div>
+
+    <div class="container">
+
+        {% if business %} {% for biz in business %}
+        <div class="card" style="width: 50%; align-content: center">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-md-8 col-lg-7">
+
+
+                    <!-- Preheading -->
+                    <h1 class="text-white text-muted text-uppercase text-center text-sm" data-animation="fadeUp" data-animation-order="0" data-animation-trigger="entered">
+                        {{ biz.name}}
+                    </h1>
+
+                    <!-- Heading -->
+                    <h3 class="text-center mb-4" data-animation="fadeUp" data-animation-order="1" data-animation-trigger="entered">
+                        {{ biz.user}}
+                    </h3>
+
+                    <!-- Subheading -->
+                    <p class="lead text-white text-muted text-center mb-5" data-animation="fadeUp" data-animation-order="2" data-animation-trigger="entered">
+                        {{biz.neighborhood}}
+                    </p>
+                    <p class="lead text-white text-muted text-center mb-5" data-animation="fadeUp" data-animation-order="2" data-animation-trigger="entered">
+                        {{biz.email}}
+                    </p>
+                </div>
+
+            </div>
+
+            {% endfor %} {% endif %}
+        </div>
+    </div>
+    {% endblock %}
